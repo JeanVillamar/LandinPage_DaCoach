@@ -1,0 +1,17 @@
+{
+  "name": "dacoach",
+  "private": true,
+  "description": "Pipeline de assets del sitio de DaCoach. La aplicación es PHP; npm sólo compila CSS e iconos.",
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:iconos && npm run build:css",
+    "build:css": "tailwindcss -i ./assets/css/entrada.css -o ./public/assets/css/dacoach.css --minify",
+    "build:iconos": "node herramientas/generar-sprite-de-iconos.mjs",
+    "dev": "tailwindcss -i ./assets/css/entrada.css -o ./public/assets/css/dacoach.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.2",
+    "lucide-static": "^0.549.0",
+    "tailwindcss": "^4.3.2"
+  }
+}

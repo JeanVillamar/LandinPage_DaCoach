@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+/* Tailwind rastrea las clases en las vistas PHP y en el JavaScript del sitio. */
+@source "../../src";
+@source "../../public/assets/js";
+
+@theme {
+  /* Paleta de marca */
+  --color-brand-blue: #073DA4;
+  --color-deep-navy: #06162F;
+  --color-dark-tech: #081D3A;
+  --color-electric-blue: #168BFF;
+  --color-cyan-accent: #19C2FF;
+  --color-tech-violet: #6858FF;
+  --color-warm-accent: #FFB547;
+  --color-light-blue-bg: #F3F8FF;
+  --color-soft-neutral-bg: #F8FAFC;
+  --color-primary-dark: #101828;
+  --color-secondary-text: #475467;
+
+  /* Tipografía */
+  --font-sora: 'Sora', 'Plus Jakarta Sans', sans-serif;
+  --font-inter: 'Inter', 'Plus Jakarta Sans', sans-serif;
+  --font-space: 'Space Grotesk', sans-serif;
+  --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+
+  /* Animaciones propias */
+  --animate-glow-pulse: glow-pulse 3s infinite ease-in-out;
+  --animate-float: float 6s infinite ease-in-out;
+  --animate-flow-line: flow-line 2s infinite linear;
+  --animate-particle-flow: particle-flow 4s infinite linear;
+  --animate-typing: typing 1.5s infinite steps(40);
+  --animate-reveal-text: reveal-text 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); filter: blur(40px); }
+  50% { opacity: 0.6; transform: scale(1.1); filter: blur(50px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes flow-line {
+  0% { stroke-dashoffset: 24; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes particle-flow {
+  0% { offset-distance: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes reveal-text {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter);
+  background-color: var(--color-soft-neutral-bg);
+  color: var(--color-primary-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+ * Logotipo: por defecto se pinta claro (fondos oscuros del menú y del pie).
+ * Cuando un ancestro marca data-scrolled="true" pasa a los colores de marca.
+ * Evita duplicar el SVG por variante.
+ */
+.logotipo {
+  --logo-primario: #FFFFFF;
+  --logo-secundario: #19C2FF;
+  --logo-texto: #FFFFFF;
+  --logo-subtexto: #94A3B8;
+}
+
+[data-scrolled="true"] .logotipo {
+  --logo-primario: #073DA4;
+  --logo-secundario: #168BFF;
+  --logo-texto: #101828;
+  --logo-subtexto: #475467;
+}
+
+/* Barra de desplazamiento */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #a1a1a1; }
+
+.dark-scrollbar::-webkit-scrollbar-track { background: #081d3a; }
+.dark-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; }
+
+.glow-effect { position: relative; }
+.glow-effect::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(90deg, var(--color-brand-blue), var(--color-electric-blue), var(--color-tech-violet));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.glow-effect:hover::before { opacity: 1; }
+
+/* Enlace activo del menú, marcado por sitio.js */
+[data-enlace-de-navegacion][data-activo="true"] {
+  font-weight: 600;
+  border-bottom-width: 2px;
+  padding-bottom: 0.25rem;
+  color: var(--color-cyan-accent);
+  border-color: var(--color-cyan-accent);
+}
+
+[data-scrolled="true"] [data-enlace-de-navegacion][data-activo="true"] {
+  color: var(--color-brand-blue);
+  border-color: var(--color-brand-blue);
+}
+
+/* Enlaces del menú sobre la barra ya sólida */
+[data-scrolled="true"] [data-enlace-de-navegacion] {
+  color: #475467;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

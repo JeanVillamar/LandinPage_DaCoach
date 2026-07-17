@@ -1,0 +1,93 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  --color-bg-0: var(--bg-0);
+  --color-bg-000: var(--bg-000);
+  --color-bg-100: var(--bg-100);
+  --color-bg-200: var(--bg-200);
+  --color-bg-300: var(--bg-300);
+  --color-text-100: var(--text-100);
+  --color-text-200: var(--text-200);
+  --color-text-300: var(--text-300);
+  --color-text-400: var(--text-400);
+  --color-text-500: var(--text-500);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-navy-deep: var(--navy-deep);
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --shadow-input: 0 1px 2px -1px rgba(0, 0, 0, 0.08), 0 2px 8px -2px rgba(0, 0, 0, 0.04);
+  --shadow-input-hover: 0 1px 2px -1px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+  --shadow-input-focus: 0 0 0 2px rgba(15, 76, 129, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+  --color-background: var(--bg-0);
+  --color-foreground: var(--text-100);
+  --color-card: var(--bg-100);
+  --color-card-foreground: var(--text-100);
+  --color-popover: var(--bg-100);
+  --color-popover-foreground: var(--text-100);
+  --color-primary: var(--navy-deep);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--bg-200);
+  --color-secondary-foreground: var(--text-100);
+  --color-muted: var(--bg-200);
+  --color-muted-foreground: var(--text-400);
+  --color-accent-foreground: #ffffff;
+  --color-destructive: oklch(0.577 0.245 27.325);
+  --color-border: var(--bg-300);
+  --color-input: var(--bg-300);
+  --color-ring: var(--accent);
+}
+
+/* Paleta extraída por muestreo de píxeles de docs/reference.png */
+:root {
+  --bg-0: #f9f9fe;
+  --bg-000: #f9f9fe;
+  --bg-100: #ffffff;
+  --bg-200: #f3f3f8;
+  --bg-300: #e4e5ec;
+  --text-100: #191c1f;
+  --text-200: #2c2f33;
+  --text-300: #42474f;
+  --text-400: #73787f;
+  --text-500: #999ca3;
+  --accent: #0f4c81;
+  --accent-hover: #0c3d69;
+  --navy-deep: #00355f;
+  --online-dot: #35ca6c;
+  --radius: 0.75rem;
+  --ease-silk: cubic-bezier(0.2, 0.0, 0, 1.0);
+}
+
+body {
+  background-color: var(--bg-0);
+  color: var(--text-100);
+  font-family: var(--font-sans);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s var(--ease-silk);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--bg-300);
+  border-radius: 999px;
+}
